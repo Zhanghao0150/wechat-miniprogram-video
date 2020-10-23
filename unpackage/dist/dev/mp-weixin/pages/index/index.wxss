@@ -1,0 +1,16 @@
+
+.content {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.item{
+	width:345rpx;
+	margin: 16rpx 15rpx;
+}
+image{
+	width: 345rpx;
+}
+

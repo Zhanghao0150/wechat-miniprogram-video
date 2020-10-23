@@ -1,0 +1,1 @@
+<view class="content"><block wx:for="{{imgs}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view><view data-event-opts="{{[['tap',[['checkList',[index]]]]]}}" class="item" bindtap="__e"><image src="{{item.src}}" mode="aspectFill"></image></view></view></block></view>
