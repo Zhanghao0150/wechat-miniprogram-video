@@ -18,8 +18,8 @@
 			}
 		},
 		onLoad(ops) {
-			const { id } = ops;
-			uni.setNavigationBarTitle({title:`分类${id}`})
+			const { name } = ops;
+			uni.setNavigationBarTitle({title:`${name}`})
 		},
 		methods: {
 			checkList(id){
