@@ -10,16 +10,21 @@
 
 <script>
 	import {imgs} from '@/api/images.js'
+	import { getList } from '@/api/classification.js'
 	export default {
 		data() {
 			return {
 				title: 'Hello',
-				imgs
+				imgs,
+				// cate_id
+				cate_id: 0,
 			}
 		},
-		onLoad(ops) {
-			const { name } = ops;
+		async onLoad(ops) {
+			const { name, id } = ops;
+			this.cate_id = id;
 			uni.setNavigationBarTitle({title:`${name}`})
+			const res = await this.getImgList();
 		},
 		methods: {
 			checkList(id){
@@ -38,6 +43,14 @@
 						console.log(222,res)
 					}
 				})
+			},
+			async getImgList(){
+				const res = await getList({
+					page:this.pageNo,
+					pageSize:this.pageSize,
+					cate_id: this.cate_id
+				});
+				console.log(res);
 			}
 		}
 	}

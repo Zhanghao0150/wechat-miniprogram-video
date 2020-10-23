@@ -176,10 +176,9 @@ var _classification = __webpack_require__(/*! @/api/classification.js */ 20);fun
 
   },
   methods: {
-    goInfo: function goInfo(name) {
-      console.log(name);
+    goInfo: function goInfo(item) {
       uni.navigateTo({
-        url: '../index/index?name=' + name,
+        url: '../index/index?name=' + item.name + "&id=" + item.id,
         success: function success() {
           console.log('111');
         },
@@ -194,7 +193,7 @@ var _classification = __webpack_require__(/*! @/api/classification.js */ 20);fun
     } },
 
   onLoad: function onLoad(ops) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                (0, _classification.getList)());case 2:res = _context.sent;
+                (0, _classification.getCateList)());case 2:res = _context.sent;
               _this.listData = res.data;
               console.log(_this.listData.data);case 5:case "end":return _context.stop();}}}, _callee);}))();
   } };exports.default = _default;

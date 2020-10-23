@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 17));
 
 
 
@@ -141,17 +141,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _images = __webpack_require__(/*! @/api/images.js */ 30); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { title: 'Hello', imgs: _images.imgs };}, onLoad: function onLoad(ops) {var name = ops.name;uni.setNavigationBarTitle({ title: "".concat(name) });
+var _images = __webpack_require__(/*! @/api/images.js */ 30);
+var _classification = __webpack_require__(/*! @/api/classification.js */ 20);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+{
+  data: function data() {
+    return {
+      title: 'Hello',
+      imgs: _images.imgs,
+      // cate_id
+      cate_id: 0 };
+
+  },
+  onLoad: function onLoad(ops) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var name, id, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+              name = ops.name, id = ops.id;
+              _this.cate_id = id;
+              uni.setNavigationBarTitle({ title: "".concat(name) });_context.next = 5;return (
+                _this.getImgList());case 5:res = _context.sent;case 6:case "end":return _context.stop();}}}, _callee);}))();
   },
   methods: {
     checkList: function checkList(id) {
@@ -170,6 +175,14 @@ var _default = { data: function data() {return { title: 'Hello', imgs: _images.i
           console.log(222, res);
         } });
 
+    },
+    getImgList: function getImgList() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  (0, _classification.getList)({
+                    page: _this2.pageNo,
+                    pageSize: _this2.pageSize,
+                    cate_id: _this2.cate_id }));case 2:res = _context2.sent;
+
+                console.log(res);case 4:case "end":return _context2.stop();}}}, _callee2);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

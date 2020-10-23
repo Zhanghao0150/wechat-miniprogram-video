@@ -4,7 +4,7 @@
 			首页
 		</view>
 		<view class="list">
-			<view class="item" @click="goInfo(item.name)" v-for="(item, index) in listData" :key="index" :style="'background-color: rgb('+ getRandom() +','+ getRandom() +','+ getRandom() +');'">
+			<view class="item" @click="goInfo(item)" v-for="(item, index) in listData" :key="index" :style="'background-color: rgb('+ getRandom() +','+ getRandom() +','+ getRandom() +');'">
 				<view class="img">
 					<image :src="item.icon" mode="aspectFill" style="width: 100%;height: 100%;"></image>
 				</view>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-	import { getList } from '@/api/classification.js'
+	import { getCateList } from '@/api/classification.js'
 	export default {
 		data(){
 			return{
@@ -26,10 +26,9 @@
 			}
 		},
 		methods:{
-			goInfo(name){
-				console.log(name)
+			goInfo(item){
 				uni.navigateTo({
-					url:'../index/index?name='+name,
+					url:'../index/index?name='+item.name +"&id="+item.id,
 					success() {
 						console.log('111')
 					},
@@ -44,7 +43,7 @@
 			}
 		},
 		async onLoad(ops) {
-			const res = await getList();
+			const res = await getCateList();
 			this.listData = res.data;
 			console.log(this.listData.data);
 		}
@@ -104,5 +103,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		font-size: 60rpx;
 	}
 </style>

@@ -74,5 +74,6 @@ page{
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
+	font-size: 60rpx;
 }
 
