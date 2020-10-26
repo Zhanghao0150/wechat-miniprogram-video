@@ -44,7 +44,7 @@
 		methods: {
 			checkList(item){
 				// const list = imgs.slice(id,-1);
-				const {Content} = item
+				const { Content } = item
 				const imgList = Content.match(new RegExp('<img src="(.*?)"','g'));
 				for(const i in imgList){
 					imgList[i] = imgList[i].replace('<img src="','').replace('"','')
@@ -79,11 +79,13 @@
 		flex-wrap: wrap;
 	}
 	.item{
-		width:345rpx;
-		margin: 16rpx 15rpx;
+		width:371rpx;
+		margin: 0.5rpx 1rpx;
+		display: flex;
+		justify-content: center;
 	}
 	image{
-		width: 345rpx;
+		width:371rpx;
 	}
 	.img-list div,.img-list view{
 		display: flex;
@@ -91,6 +93,6 @@
 	}
 	.img-list p{
 		width:345rpx;
-		margin: 16rpx 15rpx;
+		margin: 5rpx 15rpx;
 	}
 </style>

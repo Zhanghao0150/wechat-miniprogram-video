@@ -25,8 +25,8 @@ page{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
-	width: 360rpx;
-	margin: 5rpx 6rpx;
+	width: 371rpx;
+	margin: 1rpx 1rpx;
 	/* height:  420rpx; */
 	background-color: rgb(30,159,255);
 	color: white;

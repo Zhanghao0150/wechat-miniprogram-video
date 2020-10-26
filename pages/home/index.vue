@@ -9,6 +9,8 @@
 			</view>
 		</view>
 		<view class="header-mark" />
+		<!-- <open-data type="userAvatarUrl"></open-data>
+		<open-data type="userNickName"></open-data> -->
 		<view class="list">
 			<view class="item" @click="goInfo(item)" v-for="(item, index) in listData" :key="index" :style="'background-color: rgb('+ getRandom() +','+ getRandom() +','+ getRandom() +');'">
 				<view class="img">
@@ -73,8 +75,8 @@
 	.item{
 		position: relative;
 		display: flex;
-		width: 360rpx;
-		margin: 5rpx 6rpx;
+		width: 371rpx;
+		margin: 1rpx 1rpx;
 		/* height:  420rpx; */
 		background-color: rgb(30,159,255);
 		color: white;

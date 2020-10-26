@@ -7,11 +7,17 @@
 	        flex-wrap: wrap;
 }
 .item{
-	width:345rpx;
-	margin: 16rpx 15rpx;
+	width:371rpx;
+	margin: 0.5rpx 1rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 image{
-	width: 345rpx;
+	width:371rpx;
 }
 .img-list ._div,.img-list view{
 	display: -webkit-box;
@@ -22,6 +28,6 @@ image{
 }
 .img-list ._p{
 	width:345rpx;
-	margin: 16rpx 15rpx;
+	margin: 5rpx 15rpx;
 }
 
