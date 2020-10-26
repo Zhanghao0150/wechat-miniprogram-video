@@ -1,8 +1,14 @@
 <template>
 	<view class="wrap">
-		<view class="header">
-			首页
+		<view class="header" style="position: fixed;">
+			<view class="about">
+				图片收集自网络
+			</view>
+			<view class="">
+				首页
+			</view>
 		</view>
+		<view class="header-mark" />
 		<view class="list">
 			<view class="item" @click="goInfo(item)" v-for="(item, index) in listData" :key="index" :style="'background-color: rgb('+ getRandom() +','+ getRandom() +','+ getRandom() +');'">
 				<view class="img">
@@ -92,17 +98,5 @@
 	}
 	.item:nth-child(1){
 		/* background-color: #4CD964; */
-	}
-	.header{
-		/* position: absolute; */
-		top: 0;
-		background-color: rgb(242,90,113);
-		width: 100%;
-		color: white;
-		height: 160rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 60rpx;
 	}
 </style>

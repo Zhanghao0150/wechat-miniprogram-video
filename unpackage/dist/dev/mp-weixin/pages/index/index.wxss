@@ -13,4 +13,15 @@
 image{
 	width: 345rpx;
 }
+.img-list ._div,.img-list view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.img-list ._p{
+	width:345rpx;
+	margin: 16rpx 15rpx;
+}
 

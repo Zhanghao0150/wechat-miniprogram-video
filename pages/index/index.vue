@@ -1,41 +1,58 @@
 <template>
 	<view class="content">
-		<view class="" v-for="(item,index) in imgs" :key="index">
-			<view class="item" @click="checkList(index)">
-				<image :src="item.src" mode="aspectFill"></image>
+		<view class="header" style="position: fixed;">
+			<view class="about">
+				图片收集自网络
+			</view>
+			<view class="">
+				{{title}}
+			</view>
+			<view class="return-btn" @click="$ret">
+				<image src="/static/return.png" mode="" style="width: 48rpx;height: 48rpx;"></image>
 			</view>
 		</view>
+		<view class="header-mark" />
+		<view class="" v-for="(item,index) in imgs" :key="index" @click="checkList(item)">
+			<view class="item">
+				<image :src="item.Picture" mode="aspectFill"></image>
+			</view>
+		</view>
+		<rich-text :nodes="content" class="img-list"></rich-text>
 	</view>
 </template>
 
 <script>
-	import {imgs} from '@/api/images.js'
 	import { getList } from '@/api/classification.js'
 	export default {
 		data() {
 			return {
 				title: 'Hello',
-				imgs,
+				imgs:[],
 				// cate_id
 				cate_id: 0,
+				title:'',
+				content:''
 			}
 		},
 		async onLoad(ops) {
 			const { name, id } = ops;
 			this.cate_id = id;
-			uni.setNavigationBarTitle({title:`${name}`})
+			this.title = name;
+			// uni.setNavigationBarTitle({title:`${name}`})
 			const res = await this.getImgList();
 		},
 		methods: {
-			checkList(id){
+			checkList(item){
 				// const list = imgs.slice(id,-1);
-				const list =[]
-				imgs.map((item)=>{
-					list.push(item.src)
-				})
+				const {Content} = item
+				const imgList = Content.match(new RegExp('<img src="(.*?)"','g'));
+				for(const i in imgList){
+					imgList[i] = imgList[i].replace('<img src="','').replace('"','')
+				}
+				// const imgList = list.getElementsByTagNameNS('img');
 				uni.previewImage({
-					current:id,
-					urls:list,
+					current:0,
+					urls:imgList,
 					success(){
 						console.log(111)
 					},
@@ -50,7 +67,7 @@
 					pageSize:this.pageSize,
 					cate_id: this.cate_id
 				});
-				console.log(res);
+				this.imgs = res.data.data;
 			}
 		}
 	}
@@ -67,5 +84,13 @@
 	}
 	image{
 		width: 345rpx;
+	}
+	.img-list div,.img-list view{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.img-list p{
+		width:345rpx;
+		margin: 16rpx 15rpx;
 	}
 </style>

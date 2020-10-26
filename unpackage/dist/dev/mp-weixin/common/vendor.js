@@ -760,7 +760,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7114,7 +7114,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7135,14 +7135,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7227,7 +7227,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8656,25 +8656,6 @@ function request(_ref) {var url = _ref.url,header = _ref.header,data = _ref.data
   });
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */
-/*!***********************************!*\
-  !*** E:/项目/bch/bch/api/images.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.imgs = void 0;var imgs = [{ "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rnf03c919990.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rna5e8c18d17.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rncc2ff8213d.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202003/9999/bbe5b9e1d4.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn48d22471d4.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn8408bb0ad3.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rnfca7d93804.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rnc9d6a373bc.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rnaee7a6f5d3.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/200909/30-200Z91HA50-L.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rncc6c8f5de7.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn2aaa6fafa5.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn1c0d6f0f3c.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn7b66810f83.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rnf99115ced9.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn95a74f36aa.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202009/9999/rn984c2cbc21.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202003/9999/9acaf9d9d2.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/200908/30-200ZQ514570-L.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rn1b46b12ccf.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rnf551b2ffde.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rn83c2bbb7f2.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rndfa3622f7d.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rna4d194c719.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rnc2d290cdcf.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rnb29a84457d.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rn1c041771d0.jpg", "w": 300, "h": 180 }, { "src": "https://img.tupianzj.com/uploads/allimg/202008/9999/rn96fd3ec312.jpg", "w": 300, "h": 180 }];exports.imgs = imgs;
 
 /***/ })
 ]]);
