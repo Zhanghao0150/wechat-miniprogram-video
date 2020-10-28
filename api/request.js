@@ -1,5 +1,5 @@
  const host = 'https://www.aabb123456.com'
- 
+ import Vue from 'vue'
  function is_success_message(res){
 	return res.data.code == 0;
 }
@@ -10,10 +10,20 @@ function msg(res) {
 	})
 }
 export default function request({url, header, data, method}){
+	let pData = {};
+	if(url != '/api/user/init') {
+		pData = {
+			appid:Vue.prototype.$appid,
+			token:Vue.prototype.$token
+		}
+	}
 	return new Promise((resolve, reject) => {
 		uni.request({
 			url: host+url,
-			data,
+			data:{
+				...data,
+				...pData
+			},
 			header,
 			method:method||'POST',
 			success(res){

@@ -12,7 +12,7 @@
 		<!-- <open-data type="userAvatarUrl"></open-data>
 		<open-data type="userNickName"></open-data> -->
 		<view class="list">
-			<view class="item" @click="goInfo(item)" v-for="(item, index) in listData" :key="index" :style="'background-color: rgb('+ getRandom() +','+ getRandom() +','+ getRandom() +');'">
+			<view class="item" @click="goInfo(item)" v-for="(item, index) in listData" :key="index">
 				<view class="img">
 					<image :src="item.icon" mode="aspectFill" style="width: 100%;height: 100%;"></image>
 				</view>
@@ -35,25 +35,31 @@
 		},
 		methods:{
 			goInfo(item){
-				uni.navigateTo({
-					url:'../index/index?name='+item.name +"&id="+item.id,
-					success() {
-						console.log('111')
-					},
-					fail(res) {
-						console.log(222,res)
-					}
-					
-				})
+				if(item.id == 7) {
+					uni.switchTab({
+						url:'../video/index'
+					})
+				}else{
+					uni.navigateTo({
+						url:'../index/index?name='+item.name +"&id="+item.id,
+						success() {
+							console.log('111')
+						},
+						fail(res) {
+							console.log(222,res)
+						}
+						
+					})
+				}
 			},
 			getRandom(){
 				return parseInt(Math.random() * 10000 % 255)+1;
 			}
 		},
 		async onLoad(ops) {
+			await this.$init();
 			const res = await getCateList();
 			this.listData = res.data;
-			console.log(this.listData.data);
 		}
 	}
 </script>
@@ -78,7 +84,7 @@
 		width: 371rpx;
 		margin: 1rpx 1rpx;
 		/* height:  420rpx; */
-		background-color: rgb(30,159,255);
+		/* background-color: rgb(30,159,255); */
 		color: white;
 		/* border-radius: 15rpx; */
 		justify-content: center;

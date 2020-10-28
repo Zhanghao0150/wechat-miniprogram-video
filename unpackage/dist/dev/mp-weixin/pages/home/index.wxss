@@ -28,7 +28,7 @@ page{
 	width: 371rpx;
 	margin: 1rpx 1rpx;
 	/* height:  420rpx; */
-	background-color: rgb(30,159,255);
+	/* background-color: rgb(30,159,255); */
 	color: white;
 	/* border-radius: 15rpx; */
 	-webkit-box-pack: center;

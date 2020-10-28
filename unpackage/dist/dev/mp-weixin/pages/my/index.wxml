@@ -1,0 +1,1 @@
+<view><view class="header" style="position:fixed;"><view class="about"><open-data type="userNickName"></open-data>,祝您开心每一天~</view><view class="avatar-content"><view class="avatar-wrap"><view class="img-wrap"><open-data type="userAvatarUrl"></open-data></view></view></view></view><view class="header-mark"></view><view class="list"></view></view>

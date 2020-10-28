@@ -7,17 +7,23 @@
 			<view class="">
 				{{title}}
 			</view>
-			<view class="return-btn" @click="$ret">
+			<view class="return-btn" @click="indexRet">
 				<image src="/static/return.png" mode="" style="width: 48rpx;height: 48rpx;"></image>
 			</view>
 		</view>
 		<view class="header-mark" />
-		<view class="" v-for="(item,index) in imgs" :key="index" @click="checkList(item)">
+		<view class="" v-if="!isPreviewImg" v-for="(item,index) in imgs" :key="index" @click="checkList(item)">
 			<view class="item">
 				<image :src="item.Picture" mode="aspectFill"></image>
 			</view>
 		</view>
-		<rich-text :nodes="content" class="img-list"></rich-text>
+		<view class="" v-else>
+			<view class="" v-for="(item,index) in imgs2" :key="index" @click="checkList(index)">
+				<view class="item i2">
+					<image :src="item" mode="aspectFill"></image>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -28,10 +34,14 @@
 			return {
 				title: 'Hello',
 				imgs:[],
+				imgs2:[],
+				isPreviewImg:false,
 				// cate_id
 				cate_id: 0,
 				title:'',
-				content:''
+				content:'',
+				pageNo:1,
+				pageSize:20
 			}
 		},
 		async onLoad(ops) {
@@ -42,17 +52,28 @@
 			const res = await this.getImgList();
 		},
 		methods: {
-			checkList(item){
-				// const list = imgs.slice(id,-1);
-				const { Content } = item
-				const imgList = Content.match(new RegExp('<img src="(.*?)"','g'));
-				for(const i in imgList){
-					imgList[i] = imgList[i].replace('<img src="','').replace('"','')
+			indexRet(){
+				if(this.isPreviewImg) {
+					this.isPreviewImg = false
+				} else {
+					this.$ret();
 				}
+			},
+			checkList(item){
+				if(!this.isPreviewImg){
+					const { Content } = item
+					const imgList = Content.match(new RegExp('<img src="(.*?)"','g'));
+					for(const i in imgList){
+						imgList[i] = imgList[i].replace('<img src="','').replace('"','')
+					}
+					this.imgs2 = imgList;
+					this.isPreviewImg = true;
+				}
+
 				// const imgList = list.getElementsByTagNameNS('img');
 				uni.previewImage({
 					current:0,
-					urls:imgList,
+					urls:[this.imgs2[item]],
 					success(){
 						console.log(111)
 					},
@@ -83,9 +104,17 @@
 		margin: 0.5rpx 1rpx;
 		display: flex;
 		justify-content: center;
+		height: 550rpx;
+	}
+	.i2{
+		width: 746rpx;
+		/* display: block; */
+		height: 1110rpx;
+		margin: 0;
 	}
 	image{
-		width:371rpx;
+		width:100%;
+		height: 100%;
 	}
 	.img-list div,.img-list view{
 		display: flex;

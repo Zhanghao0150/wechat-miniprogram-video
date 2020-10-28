@@ -1,0 +1,1 @@
+<view class="w-1028-wrap"><view data-event-opts="{{[['tap',[['retClick',['$event']]]]]}}" class="ret" bindtap="__e"></view><view class="share"><view class="share-img"></view><view>分享给好友</view></view></view>
