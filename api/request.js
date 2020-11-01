@@ -1,14 +1,5 @@
- const host = 'https://www.aabb123456.com'
- import Vue from 'vue'
- function is_success_message(res){
-	return res.data.code == 0;
-}
-function msg(res) {
-	uni.showToast({
-		title:res.data.msg,
-		icon:'none'
-	})
-}
+const host = 'https://www.aabb123456.com'
+import Vue from 'vue'
 export default function request({url, header, data, method}){
 	let pData = {};
 	if(url != '/api/user/init') {
@@ -16,6 +7,15 @@ export default function request({url, header, data, method}){
 			appid:Vue.prototype.$appid,
 			token:Vue.prototype.$token
 		}
+	}
+	const is_success_message = function(res){
+		return res.data.code == 0;
+	}
+	const msg = function(res) {
+		uni.showToast({
+			title:res.data.msg,
+			icon:'none'
+		})
 	}
 	return new Promise((resolve, reject) => {
 		uni.request({
@@ -34,9 +34,12 @@ export default function request({url, header, data, method}){
 				}
 			},
 			fail(res) {
-				msg(res)
+				msg(res);
 				reject(res);
 			}
 		})
 	});
+}
+export{
+	host
 }

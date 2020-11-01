@@ -14,9 +14,15 @@ const $init = async function(){
 	Vue.prototype.$token = token;
 }
 Vue.prototype.$init = $init;
+
+//引入vuex
+import store from './store'
+//把vuex定义成全局组件
+Vue.prototype.$store = store
 App.mpType = 'app'
 
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()

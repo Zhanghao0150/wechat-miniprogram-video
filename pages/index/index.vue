@@ -12,13 +12,15 @@
 			</view>
 		</view>
 		<view class="header-mark" />
-		<view class="" v-if="!isPreviewImg" v-for="(item,index) in imgs" :key="index" @click="checkList(item)">
-			<view class="item">
-				<image :src="item.Picture" mode="aspectFill"></image>
+		<view class="" v-if="!isPreviewImg">
+			<view class="content">
+				<view class="item" v-for="(item,index) in imgs" :key="index" @click="checkList(item)">
+					<image :src="item.Picture" mode="aspectFill"></image>
+				</view>
 			</view>
 		</view>
-		<view class="" v-else>
-			<view class="" v-for="(item,index) in imgs2" :key="index" @click="checkList(index)">
+		<view class=""v-if="isPreviewImg">
+			<view v-if="index <= currentPageNo * 3" class="" v-for="(item,index) in imgs2" :key="index" @click="checkList(index)">
 				<view class="item i2">
 					<image :src="item" mode="aspectFill"></image>
 				</view>
@@ -28,7 +30,7 @@
 </template>
 
 <script>
-	import { getList } from '@/api/classification.js'
+	import { getImgList, getImgDetail} from '@/api/info.js'
 	export default {
 		data() {
 			return {
@@ -41,7 +43,14 @@
 				title:'',
 				content:'',
 				pageNo:1,
-				pageSize:20
+				pageSize:20,
+				isNext:false,
+				currentPageNo:1
+			}
+		},
+		computed:{
+			img2L(){
+				return   parseInt(this.imgs2.length / 3) + 1
 			}
 		},
 		async onLoad(ops) {
@@ -49,7 +58,13 @@
 			this.cate_id = id;
 			this.title = name;
 			// uni.setNavigationBarTitle({title:`${name}`})
-			const res = await this.getImgList();
+			const res = await this.getImgListData();
+		},
+		onReachBottom(){
+			if(this.img2L > this.currentPageNo) {
+				this.currentPageNo += 1
+				console.log(this.currentPageNo)
+			}
 		},
 		methods: {
 			indexRet(){
@@ -66,7 +81,9 @@
 					for(const i in imgList){
 						imgList[i] = imgList[i].replace('<img src="','').replace('"','')
 					}
-					this.imgs2 = imgList;
+					console.log(imgList);
+					console.log('length', imgList.length);
+					this.imgs2 = Array.from(new Set(imgList));
 					this.isPreviewImg = true;
 				}
 
@@ -82,14 +99,24 @@
 					}
 				})
 			},
-			async getImgList(){
-				const res = await getList({
+			async getImgListData(){
+				const res = await getImgList({
 					page:this.pageNo,
 					pageSize:this.pageSize,
 					cate_id: this.cate_id
 				});
-				this.imgs = res.data.data;
-			}
+				const imgRes = res.data.data
+				if(this.pageNo == 1) {
+					this.imgs = imgRes
+				} else {
+					this.imgs = this.imgs.concat(imgRes)
+				}
+				this.isNext = res.data.last_page >this.pageNo
+				if(this.isNext) {
+					this.pageNo += 1
+				}
+			},
+			
 		}
 	}
 </script>
@@ -105,6 +132,7 @@
 		display: flex;
 		justify-content: center;
 		height: 550rpx;
+		border-radius: 7px;
 	}
 	.i2{
 		width: 746rpx;

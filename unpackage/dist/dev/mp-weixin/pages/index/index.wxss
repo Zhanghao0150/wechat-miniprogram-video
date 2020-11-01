@@ -16,6 +16,7 @@
 	-webkit-justify-content: center;
 	        justify-content: center;
 	height: 550rpx;
+	border-radius: 7px;
 }
 .i2{
 	width: 746rpx;

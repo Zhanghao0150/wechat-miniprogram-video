@@ -1,4 +1,7 @@
 
+page{
+	background-color: rgb(245,245,247);
+}
 .avatar-wrap{
 	-webkit-box-flex: 1;
 	-webkit-flex-grow: 1;
@@ -6,7 +9,7 @@
 	width: 100%;
 	height: 110rpx;
 }
-.img-wrap{
+.avatar-img-wrap{
 	width: 110rpx;
 	height: 100%;
 	overflow: hidden;
@@ -23,4 +26,48 @@
 .title{
 	width: 220rpx;
 }
+.list{
+	margin: 40rpx 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	background-color: white;
+	border-radius: 7px;
+}
+.item{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	height: 100rpx;
+	font-size: 32rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	border-bottom: rgb(238,238,238) 1px solid;
+}
+.img-wrap{
+	margin:0 10rpx;
+	width: 40rpx;
+	height: 40rpx;
+}
+.img-wrap image{
+	width: 100%;
+	height: 100%;
+}
+.item-title{
+	margin: 0 10rpx;
+	-webkit-box-flex: .9;
+	-webkit-flex-grow: .9;
+	        flex-grow: .9;
+}
+.item view:nth-child(3){
+	-webkit-box-flex: .1;
+	-webkit-flex-grow: .1;
+	        flex-grow: .1;
+}
+
 
