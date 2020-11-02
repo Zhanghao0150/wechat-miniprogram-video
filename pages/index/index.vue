@@ -22,7 +22,7 @@
 		<view class=""v-if="isPreviewImg">
 			<view v-if="index <= currentPageNo * 3" class="" v-for="(item,index) in imgs2" :key="index" @click="checkList(index)">
 				<view class="item i2">
-					<image :src="item" mode="aspectFill"></image>
+					<image :src="item" mode="widthFix"></image>
 				</view>
 			</view>
 		</view>
@@ -132,17 +132,19 @@
 		display: flex;
 		justify-content: center;
 		height: 550rpx;
+		/* height: auto; */
 		border-radius: 7px;
 	}
 	.i2{
 		width: 746rpx;
 		/* display: block; */
-		height: 1110rpx;
+		/* height: 1110rpx; */
+		height:auto;
 		margin: 0;
 	}
 	image{
 		width:100%;
-		height: 100%;
+		height: auto;
 	}
 	.img-list div,.img-list view{
 		display: flex;

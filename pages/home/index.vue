@@ -43,10 +43,10 @@
 					uni.navigateTo({
 						url:'../index/index?name='+item.name +"&id="+item.id,
 						success() {
-							console.log('111')
+							// console.log('111')
 						},
 						fail(res) {
-							console.log(222,res)
+							// console.log(222,res)
 						}
 						
 					})
