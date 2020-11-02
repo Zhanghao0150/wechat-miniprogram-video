@@ -5,7 +5,7 @@
 			<view class="share">
 				<view class="share-img"></view>
 				<view class="">
-					<button  type="" class="share-btn" hover-class="none"  open-type="share">分享给好友</button>
+					<button  type="" class="share-btn" hover-class="none"  open-type="share">发送给好友</button>
 				</view>
 			</view>	
 		</view>
@@ -13,7 +13,7 @@
 			<swiper-item class="swiper-item" v-for="(item,index) in videoDataList" :key="index">
 				<view>
 					<!-- <image :src="item.Picture" mode="aspectFill"></image> -->
-					<video :id="'myVideo-' +index" @play="playEventHandle" :src="item.Url" controls
+					<video :controls="true" :show-play-btn="false" :id="'myVideo-' +index" @play="playEventHandle" :src="item.Url"
 						:autoplay= "index == current"
 						:loop="true"
 					></video>
@@ -146,7 +146,7 @@
 		font-size: 40rpx;
 		align-items: center;
 		/* border: 1px white solid; */
-		border-radius: 50rpx;
+		border-radius: 14rpx;
 		padding: 0 30rpx;
 		background-color: rgb(65,168,99);
 		z-index: 999;
@@ -156,7 +156,7 @@
 		/* margin: 20rpx 20rpx; */
 		width: 40rpx;
 		height: 40rpx;
-		background:url(../../static/images/share.png) no-repeat;
+		background:url(../../static/images/WeChat.png) no-repeat;
 		background-size: cover;
 	}
 	.swiper-item{
@@ -177,7 +177,13 @@
 	.share-btn {
 		border: none; 
 		background-color: transparent;
+		padding: 0;
+		margin: 0;
+		margin-left: 10rpx;
+		font-weight: bold;
+		color: white;
 		outline: none;
+		font-size: 30rpx;
 	}
 	.share-btn::after {
 	  border: none;

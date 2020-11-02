@@ -8,20 +8,20 @@
 				首页
 			</view>
 		</view>
-		<view class="header-mark" />
+		<view class="header-mark"></view>
 		<!-- <open-data type="userAvatarUrl"></open-data>
 		<open-data type="userNickName"></open-data> -->
 		<view class="list">
 			<view class="item" @click="goInfo(item)" v-for="(item, index) in listData" :key="index">
 				<view class="img">
-					<image :src="item.icon" mode="aspectFill" style="width: 100%;height: 100%;"></image>
+					<image :src="item.icon" mode="aspectFill" style="width: 100%;height: 100%;" @load="imgLoadHandleEvent"></image>
 				</view>
 				<view class="item-text">
 					<text>{{item.name}}</text>
 				</view>
 			</view>
-			</view>
 		</view>
+	    <ourLoading isFullScreen active text="loading..." v-if="loadLength<listData.length" />
 	</view>
 </template>
 
@@ -30,7 +30,8 @@
 	export default {
 		data(){
 			return{
-				listData:[]
+				listData:[],
+				loadLength:0
 			}
 		},
 		methods:{
@@ -54,6 +55,9 @@
 			},
 			getRandom(){
 				return parseInt(Math.random() * 10000 % 255)+1;
+			},
+			imgLoadHandleEvent(e){
+				this.loadLength += 1
 			}
 		},
 		async onLoad(ops) {

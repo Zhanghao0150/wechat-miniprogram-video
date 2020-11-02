@@ -12,17 +12,18 @@
 			</view>
 		</view>
 		<view class="header-mark" />
+		<ourLoading isFullScreen active text="loading..." v-if="(!isPreviewImg && loadLength<imgs.length) || loadingFlag" />
 		<view class="" v-if="!isPreviewImg">
 			<view class="content">
 				<view class="item" v-for="(item,index) in imgs" :key="index" @click="checkList(item)">
-					<image :src="item.Picture" mode="aspectFill"></image>
+					<image :src="item.Picture" mode="aspectFill" @load="imgLoadHandleEvent"></image>
 				</view>
 			</view>
 		</view>
 		<view class=""v-if="isPreviewImg">
 			<view v-if="index <= currentPageNo * 3" class="" v-for="(item,index) in imgs2" :key="index" @click="checkList(index)">
 				<view class="item i2">
-					<image :src="item" mode="widthFix"></image>
+					<image :src="item" mode="widthFix" @load="imgLoadHandleEvent2"></image>
 				</view>
 			</view>
 		</view>
@@ -45,7 +46,9 @@
 				pageNo:1,
 				pageSize:20,
 				isNext:false,
-				currentPageNo:1
+				currentPageNo:1,
+				loadLength:0,
+				loadingFlag:true,
 			}
 		},
 		computed:{
@@ -67,6 +70,10 @@
 			}
 		},
 		methods: {
+			imgLoadHandleEvent(e){
+				this.loadingFlag = false
+				this.loadLength += 1
+			},
 			indexRet(){
 				if(this.isPreviewImg) {
 					this.isPreviewImg = false

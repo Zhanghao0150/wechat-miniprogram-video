@@ -21,6 +21,10 @@ import store from './store'
 Vue.prototype.$store = store
 App.mpType = 'app'
 
+// 引入加载插件
+import ourLoading from '@/components/our-loading/our-loading.vue'
+Vue.component('ourLoading', ourLoading)
+
 const app = new Vue({
     ...App,
 	store
