@@ -68,6 +68,9 @@
 				this.currentPageNo += 1
 				console.log(this.currentPageNo)
 			}
+			if(this.isNext) {
+				this.getImgListData()
+			}
 		},
 		methods: {
 			imgLoadHandleEvent(e){

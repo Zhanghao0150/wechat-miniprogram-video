@@ -25,6 +25,7 @@
 			"style": {
 				"navigationBarTitleText": "视频详情",
 				"navigationStyle":"custom",
+				"disableScroll":true,
 				"app-plus":{
 					"titleNView":false
 				}

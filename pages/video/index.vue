@@ -11,11 +11,16 @@
 		</view>
 		<swiper @change="changeEventHandle" :current="current"  class="swiper-wrap"  :indicator-dots="false" :autoplay="false" :vertical="true">
 			<swiper-item class="swiper-item" v-for="(item,index) in videoDataList" :key="index">
-				<view>
+				<view class="video">
 					<!-- <image :src="item.Picture" mode="aspectFill"></image> -->
-					<video :controls="true" :show-play-btn="false" :id="'myVideo-' +index" @play="playEventHandle" :src="item.Url"
-						:autoplay= "index == current"
-						:loop="true"
+					<video
+					v-if="current == index"
+					:controls="true"
+					:show-play-btn="true"
+					:id="'myVideo-' +index"
+					@play="playEventHandle"
+					:src="item.Url"
+					:loop="true"
 					></video>
 				</view>
 			</swiper-item>
@@ -30,12 +35,13 @@
 		data(){
 			return {
 				pageNo:1,
-				pageSize:20,
+				pageSize:5,
 				videoDataList:[],
 				isTop:false,
-				current:1,
+				current:0,
 				isChangeSwiper:false,
-				isFirstShow:true
+				isFirstShow:true,
+				isIos:uni.getSystemInfoSync().system.toLowerCase().indexOf('ios') != -1
 			}
 		},
 		methods:{
@@ -51,6 +57,7 @@
 			},
 			async changeEventHandle(event){
 				const {current, source} = event.detail
+				this.current = current
 				console.log('test2020111',current,source)
 				this.isTop = current == 0 
 				if(current == 0) {
@@ -72,9 +79,14 @@
 				})
 			},
 			async getVideoListData(){
-				const res = await getVideoList({
+				let data = {
 					cate_id:7
-				})
+					}
+				if(this.shareVideoId!=null){
+					data['id'] = this.shareVideoId
+					this.$store.commit('setShareVideoId',null)
+				}
+				const res = await getVideoList(data)
 				let videoList = res.data || []
 				if(!this.isTop){
 					this.videoDataList = this.videoDataList.concat(videoList)
@@ -85,7 +97,7 @@
 			}
 		},
 		computed:{
-			...mapState(['videoContext'])
+			...mapState(['videoContext','shareVideoId'])
 		},
 		onShow() {
 			// console.log(this.videoContext)
@@ -96,9 +108,13 @@
 			uni.hideTabBar({
 			})
 		},
-		onLoad() {
+		onLoad(ops) {
 			this.getVideoListData()
 			this.isFirstShow = false
+			console.log(ops)
+			if(ops.shareVideoId) {
+				this.Id = shareVideoId
+			}
 		},
 		mounted() {
 			
@@ -108,7 +124,7 @@
 		onShareAppMessage(){
 			return{
 				title:'hi，这边有你喜欢看的内容哦。',
-				path:'/pages/home/index',
+				path:'/pages/home/index?shareVideoId=' + this.videoDataList[this.current].Id,
 				imageUrl:this.videoDataList[this.current].Picture
 			}
 		}
@@ -133,6 +149,9 @@
 		justify-content: space-between;
 		align-items: center;
 		z-index: 999;
+	}
+	.tools-bar view {
+		position: relative;
 	}
 	.ret{
 		width: 60rpx;
@@ -169,10 +188,11 @@
 		width: 100%;
 		height: 100vh;
 	}
-	image, video{
+	image, .video, video{
 		position: absolute;
 		width: 100%;
 		height: 100vh;
+		z-index: 0;
 	}
 	.share-btn {
 		border: none; 

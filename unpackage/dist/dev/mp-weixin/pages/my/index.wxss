@@ -53,6 +53,15 @@ page{
 	margin:0 10rpx;
 	width: 40rpx;
 	height: 40rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 .img-wrap image{
 	width: 100%;
@@ -69,5 +78,13 @@ page{
 	-webkit-flex-grow: .1;
 	        flex-grow: .1;
 }
-
+.item-confirm{
+	width: 60%;
+	background-color: rgb(242,90,113);
+	color: white;
+	font-size: 40rpx;
+	margin-left: 20%;
+	text-align: center;
+	border-radius: 40rpx;
+}
 

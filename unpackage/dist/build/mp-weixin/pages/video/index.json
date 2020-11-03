@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "视频详情",
   "navigationStyle": "custom",
+  "disableScroll": true,
   "usingComponents": {}
 }

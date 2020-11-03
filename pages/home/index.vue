@@ -64,6 +64,16 @@
 			await this.$init();
 			const res = await getCateList();
 			this.listData = res.data;
+			
+			if(ops.shareVideoId){
+				this.$store.commit('setShareVideoId',ops.shareVideoId)
+				uni.switchTab({
+					url:'../video/index?shareVideoId='+ops.shareVideoId,
+					success() {
+						uni.hideTabBar({})
+					}
+				})
+			}
 		}
 	}
 </script>
