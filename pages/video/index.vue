@@ -20,6 +20,7 @@
 					:id="'myVideo-' +index"
 					@play="playEventHandle"
 					:src="item.Url"
+					:autoplay= "index == current"
 					:loop="true"
 					></video>
 				</view>

@@ -307,7 +307,7 @@ var _request = __webpack_require__(/*! @/api/request.js */ 15); //
 //
 //
 //
-var _default = { data: function data() {return { statementView: false };}, methods: { showStatementView: function showStatementView() {this.statementView = true;}, contactauthor: function contactauthor() {uni.previewImage({ current: 1, urls: [_request.host + '/static/contactauthor.png'] });}, confirm: function confirm() {this.statementView = false;} } };exports.default = _default;
+var _default = { data: function data() {return { statementView: false };}, methods: { showStatementView: function showStatementView() {this.statementView = true;}, contactauthor: function contactauthor() {uni.previewImage({ current: 1, urls: [_request.host + '/static/contactauthor.png?day=' + new Date().getDay()] });}, confirm: function confirm() {this.statementView = false;} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

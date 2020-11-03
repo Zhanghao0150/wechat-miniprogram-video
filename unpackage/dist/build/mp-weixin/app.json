@@ -40,6 +40,5 @@
   },
   "usingComponents": {
     "our-loading": "/components/our-loading/our-loading"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

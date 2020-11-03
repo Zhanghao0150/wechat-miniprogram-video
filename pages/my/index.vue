@@ -101,7 +101,7 @@
 			contactauthor(){
 				uni.previewImage({
 					current:1,
-					urls:[host + '/static/contactauthor.png']
+					urls:[host + '/static/contactauthor.png?day='+new Date().getDay()]
 				})
 			},
 			confirm(){
